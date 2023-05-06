@@ -6,11 +6,11 @@ const HOST = '0.0.0.0';
 
 const startServer = async () => {
   try {
-    // return await connectMongoDB().then(() => {
+    // await connectMongoDB();
+
     return app.listen(PORT, () =>
       console.log(`Server is running on http://${HOST}:${PORT}`),
     );
-    // });
   } catch (error) {
     console.error(error);
     process.exit(1);

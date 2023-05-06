@@ -7,10 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2021-01-27
 
-### Added
+Added
 
 - Foundamental documents and files
 
-### Changed
+Changed
 
-### Removed
+Removed
+
+## [0.2.0] - 2023-05-06
+
+Added
+
+- Customized

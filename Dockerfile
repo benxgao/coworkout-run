@@ -9,12 +9,23 @@ RUN npm i --only-production
 RUN cp -R node_modules prod_node_modules
 RUN npm i
 
-FROM dependencies AS test
-COPY . .
+# FROM dependencies AS test
+# COPY . .
 # RUN npm run test
 
-FROM base AS final
+FROM dependencies AS final
+ARG NODE_ENV=production
+ENV NODE_ENV $NODE_ENV
 COPY --from=dependencies /root/app/prod_node_modules ./node_modules
 COPY . .
+# RUN npm run build
+
 EXPOSE 8080
-ENTRYPOINT [ "npm", "start"]
+
+# docker run --entrypoint npm run start
+# docker exec coworkout:v1 ps -eo pid,ppid,user,args --sort pid
+# /bin/sh -c npm run build
+# /usr/local/bin/npm
+# ENTRYPOINT [ "/bin/sh", "-c", "npm", "run", "serve"]
+
+CMD [ "npx", "forever", "express_server.js"]

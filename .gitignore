@@ -1,7 +1,7 @@
 .history
 .env
 functions/.env.yaml
-**/*/*.log
+*.log
 dist
 node_modules
 gha-creds-*.json
