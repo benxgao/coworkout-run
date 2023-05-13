@@ -13,9 +13,24 @@ RUN npm i
 # COPY . .
 # RUN npm run test
 
+# echo "MONGO_HOST=${{ vars.MONGO_HOST }}" >> ./.env
+# echo "MONGO_USERNAME=${{ vars.MONGO_USERNAME }}" >> ./.env
+# echo "MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }}" >> ./.env
+
 FROM dependencies AS final
+
+ARG MYSECRET
+ARG MONGO_HOST
+ARG MONGO_USERNAME
+ARG MONGO_PASSWORD
 ARG NODE_ENV=production
+
+ENV MYSECRET "${MYSECRET}"
+ENV MONGO_HOST "${MONGO_HOST}"
+ENV MONGO_USERNAME "${MONGO_USERNAME}"
+ENV MONGO_PASSWORD "${MONGO_PASSWORD}"
 ENV NODE_ENV $NODE_ENV
+
 COPY --from=dependencies /root/app/prod_node_modules ./node_modules
 COPY . .
 # RUN npm run build
